@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Korawit Boonma — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4efe6;
+  --bg-soft:#ece5d8;
+  --text:#2b2420;
+  --text-soft:#6b5f52;
+  --accent:#c96342;
+  --accent-dark:#2b2420;
+  --card-bg:#ffffff;
+  --border:#e2d8c7;
+  --dark-card:#3a2f27;
+  --font-th:'Noto Serif Thai',serif;
+  --font-en:'Playfair Display',serif;
+  --font-body:'Noto Sans Thai','JetBrains Mono',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+
+[data-theme="dark"]{
+  --bg:#171310;
+  --bg-soft:#211b16;
+  --text:#f0e9df;
+  --text-soft:#a89a89;
+  --accent:#e08a63;
+  --accent-dark:#f0e9df;
+  --card-bg:#231d18;
+  --border:#3a3128;
+  --dark-card:#2b241d;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.6;
+  transition:background .3s ease,color .3s ease;
+  overflow-x:hidden;
+}
+
+/* ===== NAV ===== */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 48px;
+  position:sticky;top:0;z-index:50;
+  background:var(--bg);
+  border-bottom:1px solid transparent;
+}
+.nav__logo{
+  font-family:var(--font-en);font-weight:700;font-size:1.2rem;
+  color:var(--text);text-decoration:none;letter-spacing:.5px;
+  display:flex;align-items:center;gap:8px;
+}
+.nav__logo-sub{color:var(--accent);font-weight:400;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;}
+.nav__links{display:flex;gap:32px;}
+.nav__links a{
+  color:var(--text-soft);text-decoration:none;font-size:.95rem;
+  transition:color .2s;
+}
+.nav__links a:hover,.nav__links a:focus-visible{color:var(--accent);}
+.theme-toggle{
+  border:1px solid var(--border);background:var(--card-bg);color:var(--text);
+  width:38px;height:38px;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .2s;
+}
+.theme-toggle:hover{transform:rotate(20deg);}
+
+/* ===== HERO ===== */
+.hero{
+  display:flex;align-items:center;justify-content:space-between;gap:40px;
+  padding:90px 48px 120px;max-width:1280px;margin:0 auto;
+}
+.hero__text{max-width:640px;}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--font-mono);font-size:.78rem;letter-spacing:2px;
+  color:var(--text-soft);margin-bottom:18px;text-transform:uppercase;
+}
+.eyebrow .rule{width:24px;height:1px;background:var(--text-soft);display:inline-block;}
+.hero__name-th{
+  font-family:var(--font-th);font-size:3.4rem;font-weight:700;
+  line-height:1.15;margin-bottom:4px;
+}
+.hero__name-en{
+  font-family:var(--font-en);font-size:2.1rem;font-weight:600;
+  color:var(--text);margin-bottom:22px;
+}
+.hero__desc{color:var(--text-soft);max-width:520px;margin-bottom:26px;font-size:1.02rem;}
+.contact-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px;}
+.pill{
+  border:1px solid var(--border);border-radius:20px;padding:8px 16px;
+  font-family:var(--font-mono);font-size:.82rem;color:var(--text);
+  text-decoration:none;background:var(--card-bg);transition:.2s;
+}
+.pill:hover{border-color:var(--accent);color:var(--accent);}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;}
+.btn{
+  padding:13px 24px;border-radius:24px;text-decoration:none;
+  font-size:.92rem;font-weight:500;transition:.2s;display:inline-flex;align-items:center;gap:6px;
+}
+.btn--primary{background:var(--accent-dark);color:var(--bg);}
+.btn--primary:hover{background:var(--accent);}
+.btn--outline{border:1px solid var(--border);color:var(--text);}
+.btn--outline:hover{border-color:var(--accent);color:var(--accent);}
+
+.hero__photo{position:relative;width:300px;height:300px;flex-shrink:0;}
+.hero__photo-blob{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--accent),#d9b06b);
+  border-radius:48% 52% 55% 45%/55% 45% 55% 45%;
+  transform:translate(14px,14px);
+  opacity:.55;
+}
+.hero__photo-frame{
+  position:relative;width:100%;height:100%;border-radius:50%;
+  overflow:hidden;border:6px solid var(--bg);box-shadow:0 20px 40px rgba(0,0,0,.15);
+  background:linear-gradient(160deg,#4a7fd6,#2f5fc2);
+}
+.hero__photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ===== SECTIONS ===== */
+.section{max-width:1280px;margin:0 auto;padding:80px 48px;}
+.section__title{
+  font-family:var(--font-th);font-size:2.1rem;font-weight:700;margin-bottom:46px;
+}
+
+/* skills */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;}
+.skill-group h3{font-family:var(--font-en);font-size:1.05rem;margin-bottom:12px;color:var(--accent);}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{
+  background:var(--bg-soft);border:1px solid var(--border);border-radius:8px;
+  padding:6px 12px;font-family:var(--font-mono);font-size:.78rem;color:var(--text-soft);
+}
+
+/* filter */
+.filter-row{display:flex;gap:10px;margin-bottom:36px;}
+.filter-btn{
+  border:1px solid var(--border);background:var(--card-bg);color:var(--text-soft);
+  padding:9px 20px;border-radius:20px;cursor:pointer;font-size:.88rem;transition:.2s;
+}
+.filter-btn.active,.filter-btn:hover{background:var(--accent-dark);color:var(--bg);border-color:var(--accent-dark);}
+
+/* project cards */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;}
+.project-card{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:14px;
+  padding:28px;transition:transform .2s,box-shadow .2s;
+}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 16px 30px rgba(0,0,0,.08);}
+.project-card h3{font-family:var(--font-th);font-size:1.15rem;margin-bottom:6px;}
+.project-card__sub{color:var(--accent);font-size:.85rem;margin-bottom:14px;font-family:var(--font-mono);}
+.project-card__desc{color:var(--text-soft);font-size:.92rem;margin-bottom:18px;}
+.project-card__list{color:var(--text-soft);font-size:.92rem;padding-left:20px;display:flex;flex-direction:column;gap:8px;}
+.link-arrow{color:var(--text);text-decoration:underline;font-size:.88rem;}
+.link-arrow:hover{color:var(--accent);}
+
+/* timeline */
+.timeline{position:relative;padding-left:32px;border-left:2px solid var(--border);}
+.timeline__item{position:relative;padding-bottom:48px;}
+.timeline__item:last-child{padding-bottom:0;}
+.timeline__dot{
+  position:absolute;left:-40px;top:2px;width:16px;height:16px;border-radius:50%;
+  background:var(--bg);border:3px solid var(--accent);
+}
+.timeline__year{font-family:var(--font-mono);color:var(--accent);font-size:.85rem;margin-bottom:6px;}
+.timeline__item h3{font-family:var(--font-th);font-size:1.2rem;margin-bottom:6px;}
+.timeline__org{color:var(--accent);margin-bottom:6px;}
+.timeline__desc{color:var(--text-soft);font-size:.92rem;}
+.edu-card{
+  margin-top:20px;background:var(--dark-card);color:#f0e9df;border-radius:14px;
+  padding:24px;max-width:420px;
+}
+.edu-card__title{font-weight:600;margin-bottom:10px;}
+.edu-card__line{color:#c9bda9;font-size:.88rem;margin-bottom:18px;}
+.edu-card__stats{display:flex;gap:24px;}
+.edu-card__num{display:block;font-family:var(--font-en);font-size:1.6rem;color:var(--accent);}
+.edu-card__label{font-size:.78rem;color:#c9bda9;}
+
+/* certs */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+.cert-card{
+  display:flex;gap:16px;align-items:center;background:var(--card-bg);
+  border:1px solid var(--border);border-left:4px solid var(--accent);
+  border-radius:10px;padding:20px;
+}
+.cert-card__thumb{
+  width:70px;height:70px;border-radius:8px;background:var(--bg-soft);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  overflow:hidden;border:1px solid var(--border);
+}
+.cert-card__thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.cert-card h3{font-size:1rem;margin-bottom:4px;}
+.cert-card__org{color:var(--text-soft);font-size:.82rem;margin-bottom:6px;}
+
+/* showcase */
+.showcase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;}
+.showcase-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.showcase-card h3{padding:18px 20px 4px;font-size:1rem;}
+.showcase-card p{padding:0 20px 20px;color:var(--text-soft);font-size:.88rem;}
+.showcase-card__mock{
+  height:180px;background:#1c1b22;position:relative;padding:16px;
+}
+.mock__bar{height:8px;width:60px;background:#f4a25a;border-radius:4px;margin-bottom:14px;}
+.mock__bubble{
+  background:#2a2937;color:#e5e2f0;font-family:var(--font-mono);font-size:.7rem;
+  padding:6px 10px;border-radius:6px;display:inline-block;margin:4px 0;
+}
+.mock--tool .mock__title{color:#fff;font-family:var(--font-en);font-size:1rem;margin-top:20px;}
+.mock--login{background:#faf7f2;display:flex;flex-direction:column;gap:10px;justify-content:center;}
+.mock__field{background:#fff;border:1px solid #e2d8c7;border-radius:6px;padding:8px 12px;font-size:.75rem;color:#8a7d6c;}
+.mock__btn{background:#2e7d32;color:#fff;text-align:center;padding:10px;border-radius:6px;font-size:.8rem;width:fit-content;}
+
+/* activities */
+.activity-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+.activity-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:24px;}
+.activity-card h3{font-size:1.02rem;margin-bottom:8px;}
+.activity-card p{color:var(--text-soft);font-size:.9rem;}
+.activity-card--empty{text-align:center;border-style:dashed;color:var(--text-soft);}
+.activity-card--empty p{font-size:.92rem;}
+
+/* footer */
+.footer{text-align:center;padding:40px;color:var(--text-soft);font-size:.85rem;border-top:1px solid var(--border);}
+
+/* scroll top */
+.scroll-top{
+  position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;
+  background:var(--accent-dark);color:var(--bg);border:none;cursor:pointer;font-size:1.1rem;
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .2s;
+}
+.scroll-top.show{opacity:1;pointer-events:auto;}
+.scroll-top:hover{transform:translateY(-3px);}
+
+/* focus visibility */
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{transition:none !important;}
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:900px){
+  .nav__links{display:none;}
+  .hero{flex-direction:column;text-align:center;padding-top:60px;}
+  .hero__text{max-width:100%;}
+  .contact-pills,.hero__cta{justify-content:center;}
+  .eyebrow{justify-content:center;}
+  .hero__name-th{font-size:2.4rem;}
+  .hero__name-en{font-size:1.5rem;}
+  .section{padding:60px 24px;}
+  .nav{padding:18px 24px;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="nav">
+  <a href="#hero" class="nav__logo"><span class="dot"></span>KORAWIT<span class="nav__logo-sub">.dev</span></a>
+  <nav class="nav__links">
+    <a href="#hero">ประวัติ</a>
+    <a href="#skills">ทักษะ</a>
+    <a href="#projects">ผลงาน</a>
+    <a href="#timeline">เส้นทาง</a>
+    <a href="#certs">ใบประกาศ</a>
+    <a href="#activities">กิจกรรม</a>
+  </nav>
+  <button id="themeToggle" class="theme-toggle" aria-label="สลับธีมมืด/สว่าง">
+    <svg id="iconMoon" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="hero" class="hero">
+  <div class="hero__text">
+    <p class="eyebrow"><span class="rule"></span>AI TRAINING &amp; DATA ANNOTATOR</p>
+    <h1 class="hero__name-th">กรวิชญ์ บุญมา</h1>
+    <h2 class="hero__name-en">Korawit Boonma</h2>
+    <p class="hero__desc">
+      สนใจงานด้าน AI Training และ Data Annotation มีทักษะการทำงานตามแนวทาง (guideline)
+      สามารถทำงานที่ต้องทำซ้ำในปริมาณมากได้อย่างสม่ำเสมอ พร้อมเรียนรู้เครื่องมือและกระบวนการใหม่ๆ
+      มีความอดทนและมุ่งมั่นในการส่งมอบผลงานที่มีคุณภาพ
+    </p>
+    <div class="contact-pills">
+      <a href="mailto:korawit230448@gmail.com" class="pill">✉ korawit230448@gmail.com</a>
+      <a href="tel:0809377819" class="pill">☎ 0809377819</a>
+      <a href="https://github.com/FirsTy-Gay" target="_blank" class="pill">⌥ github.com/FirsTy-Gay</a>
+      <a href="https://web.facebook.com/korawit.boonma" target="_blank" class="pill">f web.facebook.com/korawit.boonma</a>
+      <a href="https://instagram.com/k_kxrawit_23" target="_blank" class="pill">◎ instagram.com/k_kxrawit_23</a>
+    </div>
+    <div class="hero__cta">
+      <a href="#projects" class="btn btn--primary">🗂 ดูผลงาน</a>
+      <a href="#" class="btn btn--outline">📄 ดาวน์โหลด CV</a>
+      <a href="#contact" class="btn btn--outline">✉ ติดต่อ</a>
+    </div>
+  </div>
+  <div class="hero__photo">
+    <div class="hero__photo-blob"></div>
+    <div class="hero__photo-frame">
+      <img src="assets/profile.jpg" alt="Korawit Boonma" onerror="this.style.display='none'">
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills" class="section">
+  <p class="eyebrow"><span class="rule"></span>01 — SKILLS</p>
+  <h2 class="section__title">ทักษะความสามารถ</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3>Hard Skills</h3>
+      <div class="tag-row">
+        <span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span>
+        <span class="tag">Model Training</span><span class="tag">Computer Vision</span>
+        <span class="tag">Data Annotation / Labeling</span><span class="tag">Data Preprocessing / Data Cleaning</span>
+        <span class="tag">Model Evaluation &amp; Validation</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Soft Skills</h3>
+      <div class="tag-row">
+        <span class="tag">Teamwork</span><span class="tag">Active Listening</span><span class="tag">Innovation Mindset</span>
+        <span class="tag">Multitasking</span><span class="tag">Continuous Learning</span><span class="tag">Time Management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects" class="section">
+  <p class="eyebrow"><span class="rule"></span>02 — PROJECT EXPERIENCE</p>
+  <h2 class="section__title">ประสบการณ์และผลงาน</h2>
+
+  <div class="project-grid">
+    <article class="project-card">
+      <h3>Motor Health Monitoring System</h3>
+      <ul class="project-card__list">
+        <li>รวบรวมและตรวจสอบคุณภาพข้อมูลเซนเซอร์จากมอเตอร์ก่อนนำเข้าสู่กระบวนการฝึกโมเดล</li>
+        <li>ข้อมูลแยกตามสถานะการทำงาน (ปกติ / เสี่ยงเสียหาย / ต้องซ่อมบำรุง)</li>
+        <li>รายงานความผิดปกติของข้อมูลหรือ pattern ที่ไม่สอดคล้องกับ guideline ให้ทีมพัฒนาโมเดลปรับปรุง</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section id="timeline" class="section">
+  <p class="eyebrow"><span class="rule"></span>02.5 — EDUCATION</p>
+  <h2 class="section__title">เส้นทางการศึกษา</h2>
+
+  <div class="timeline">
+    <div class="timeline__item">
+      <span class="timeline__dot"></span>
+      <p class="timeline__year">2022 — Present</p>
+      <h3>วิศวกรรมคอมพิวเตอร์ — Robot Automation</h3>
+      <p class="timeline__org">มหาวิทยาลัยราชภัฏพิบูลสงคราม (Pibulsongkram Rajabhat University)</p>
+      <p class="timeline__desc">Bachelor of Engineering in Computer Engineering with a concentration in Robot Automation</p>
+
+      <div class="edu-card">
+        <p class="edu-card__title">🎓 Education</p>
+        <p class="edu-card__line">Bachelor of Engineering in Computer Engineering at Pibulsongkram Rajabhat University</p>
+        <div class="edu-card__stats">
+          <div><span class="edu-card__num">2.94</span><span class="edu-card__label">GPAX</span></div>
+          <div><span class="edu-card__num">3.14</span><span class="edu-card__label">Major</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFICATIONS ===== -->
+<section id="certs" class="section">
+  <p class="eyebrow"><span class="rule"></span>03 — CERTIFICATIONS</p>
+  <h2 class="section__title">ใบประกาศนียบัตร</h2>
+
+  <div class="cert-grid">
+    <article class="cert-card">
+      <a href="assets/certs/fortinet-cybersecurity.pdf" target="_blank" class="cert-card__thumb">
+        <img src="assets/certs/thumbs/fortinet-1.png" alt="Getting Started in Cybersecurity 3.0 certificate">
+      </a>
+      <div>
+        <h3>Getting Started in Cybersecurity 3.0</h3>
+        <p class="cert-card__org">Fortinet Training Institute · 23/06/2026</p>
+        <a href="assets/certs/fortinet-cybersecurity.pdf" target="_blank" class="link-arrow">ดูใบประกาศฯ →</a>
+      </div>
+    </article>
+    <article class="cert-card">
+      <a href="assets/certs/python-essentials-1.pdf" target="_blank" class="cert-card__thumb">
+        <img src="assets/certs/thumbs/python-1.png" alt="Python Essentials 1 certificate">
+      </a>
+      <div>
+        <h3>Python Essentials 1</h3>
+        <p class="cert-card__org">Cisco Networking Academy · 24 Dec 2025</p>
+        <a href="assets/certs/python-essentials-1.pdf" target="_blank" class="link-arrow">ดูใบประกาศฯ →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== ACTIVITIES ===== -->
+<section id="activities" class="section">
+  <p class="eyebrow"><span class="rule"></span>04 — ACTIVITIES</p>
+  <h2 class="section__title">กิจกรรม</h2>
+  <div class="activity-grid">
+    <article class="activity-card activity-card--empty">
+      <p>ยังไม่มีข้อมูลกิจกรรม — จะอัปเดตเร็วๆ นี้</p>
+    </article>
+  </div>
+</section>
+
+<!-- ===== CONTACT / FOOTER ===== -->
+<footer id="contact" class="footer">
+  <p>© 2026 Korawit Boonma · Built with ♥</p>
+</footer>
+
+<button id="scrollTop" class="scroll-top" aria-label="เลื่อนขึ้นด้านบน">↑</button>
+
+<script>
+// ===== Dark / Light theme toggle =====
+const themeToggle = document.getElementById('themeToggle');
+const root = document.documentElement;
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) root.setAttribute('data-theme', savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  const next = current === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+
+// ===== Project filter =====
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    projectCards.forEach(card => {
+      const show = filter === 'all' || card.dataset.cat === filter;
+      card.style.display = show ? '' : 'none';
+    });
+  });
+});
+
+// ===== Scroll to top button =====
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('show', window.scrollY > 400);
+});
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+</script>
+</body>
+</html>
